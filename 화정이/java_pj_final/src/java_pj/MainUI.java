@@ -3,6 +3,8 @@ package java_pj;
 import java.util.Scanner;
 
 public class MainUI {
+    private Scanner sc = new Scanner(System.in);  // Scanner를 클래스 멤버로 이동
+
     public void service() {
         while (true) {
             System.out.println("=================================================");
@@ -19,12 +21,12 @@ public class MainUI {
             System.out.println("-------------------------------------------------");
             System.out.print("메뉴를 선택하세요 : ");
 
-            int menu = inputInt();
+            int menu = inputInt();  // 메뉴 입력 받기
 
             switch (menu) {
                 case 1:
                     VideoUi videoUi = VideoUi.getInstance();
-                    videoUi.service();
+                    videoUi.videoInfoMenu();
                     break;
                 case 2:
                     memberManagementMenu();
@@ -34,7 +36,7 @@ public class MainUI {
                         SessionManager.getInstance().logout();
                         System.out.println("로그아웃되었습니다.");
                     } else {
-                        new LoginUI().service();
+                        new LoginUI().service();  // 로그인 UI 호출
                     }
                     break;
                 case 0:
@@ -58,13 +60,13 @@ public class MainUI {
     }
 
     private int inputInt() {
-        Scanner sc = new Scanner(System.in);
         while (!sc.hasNextInt()) {
             System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
             sc.next(); // 잘못된 입력을 버립니다.
             System.out.print("메뉴를 선택하세요 : ");
         }
-        return sc.nextInt();
+        int result = sc.nextInt();
+        sc.nextLine();  // 입력 버퍼 비우기
+        return result;
     }
 }
-

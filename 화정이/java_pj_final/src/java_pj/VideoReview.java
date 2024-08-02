@@ -1,12 +1,25 @@
 package java_pj;
 
-public class VideoReview {
+import java.io.Serializable;
+
+public class VideoReview implements Serializable {
+    private static final long serialVersionUID = 1L;  // 직렬화 버전 ID
+
     private int videoNo;
     private int reviewNo;
     private String nickName;
     private String content;
 
-    // Constructors, Getters, and Setters
+    // 기본 생성자, 게터/세터 메서드 및 toString() 메서드
+
+    public VideoReview() {}
+
+    public VideoReview(int videoNo, int reviewNo, String nickName, String content) {
+        this.videoNo = videoNo;
+        this.reviewNo = reviewNo;
+        this.nickName = nickName;
+        this.content = content;
+    }
 
     public int getVideoNo() {
         return videoNo;
@@ -39,5 +52,14 @@ public class VideoReview {
     public void setContent(String content) {
         this.content = content;
     }
-    
+
+    @Override
+    public String toString() {
+        return "VideoReview{" +
+                "videoNo=" + videoNo +
+                ", reviewNo=" + reviewNo +
+                ", nickName='" + nickName + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

@@ -2,9 +2,6 @@ package java_pj;
 
 import java.util.List;
 import java.util.Scanner;
-import java_pj.VideoReview;
-import java_pj.VideoReviewDao;
-import java_pj.VideoReviewDaoImpl;
 
 public class VideoReviewUI {
     private VideoReviewDao videoReviewDao = VideoReviewDaoImpl.getInstance();
@@ -35,6 +32,7 @@ public class VideoReviewUI {
             System.out.print("메뉴를 선택하세요 : ");
             
             int menu = sc.nextInt();
+            sc.nextLine(); // 입력 버퍼 비우기
             
             switch (menu) {
                 case 1:
@@ -79,15 +77,19 @@ public class VideoReviewUI {
     }
 
     public void registReview() {
-        sc.nextLine(); // 입력 버퍼 비우기
-        System.out.print("이름을 입력하세요 : ");
-        String nickName = sc.nextLine();
+        Member loggedInMember = SessionManager.getInstance().getLoggedInMember();
+        
+        if (loggedInMember == null) {
+            System.out.println("리뷰를 등록하려면 로그인이 필요합니다.");
+            return;
+        }
+
         System.out.print("내용을 입력하세요 : ");
         String content = sc.nextLine();
         
         VideoReview review = new VideoReview();
         review.setVideoNo(videoNo);
-        review.setNickName(nickName);
+        review.setNickName(loggedInMember.getName());  // 로그인한 회원의 이름 사용
         review.setContent(content);
         
         videoReviewDao.insertReview(review);

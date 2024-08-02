@@ -44,7 +44,7 @@ public class VideoUi {
         }
     }
 
-    private void videoInfoMenu() {
+    public void videoInfoMenu() {
         while (true) {
             System.out.println("=================================================");
             System.out.println("                 영상정보 메인화면                 ");
