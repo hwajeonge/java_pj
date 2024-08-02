@@ -21,7 +21,7 @@ public class VideoReviewDaoImpl implements VideoReviewDao {
         List<VideoReview> reviews = videoReviewDb.getOrDefault(videoReview.getVideoNo(), new ArrayList<>());
         reviews.add(videoReview);
         videoReviewDb.put(videoReview.getVideoNo(), reviews);
-        return reviews.size(); // Return the size of the list as an indication of success
+        return reviews.size(); 
     }
 
     @Override

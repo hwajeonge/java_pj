@@ -20,6 +20,7 @@ public class VideoUi {
             System.out.println("              자바로 구현하는 SSAFIT              ");
             System.out.println("-------------------------------------------------");
             System.out.println("1. 영상정보");
+            System.out.println("2. 회원관리");  // 회원 관리 메뉴 추가
             System.out.println("0. 종료");
             System.out.println("-------------------------------------------------");
             System.out.print("메뉴를 선택하세요 : ");
@@ -29,6 +30,9 @@ public class VideoUi {
             switch (menu) {
                 case 1:
                     videoInfoMenu();
+                    break;
+                case 2:
+                    memberManagementMenu();  // 회원 관리 메뉴 호출
                     break;
                 case 0:
                     MainUI mainUi = new MainUI();
@@ -62,6 +66,12 @@ public class VideoUi {
                     System.out.println("잘못된 메뉴 선택입니다.");
             }
         }
+    }
+
+    private void memberManagementMenu() {
+        // 회원관리 UI 호출
+        MemberUI memberUI = new MemberUI();
+        memberUI.service();
     }
 
     public void listVideo() {
